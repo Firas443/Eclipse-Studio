@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Eclipse Studio — Portfolio</title>
+  <meta name="description" content="Eclipse Studio — web design, Flutter apps, video editing, graphic design, and 3D." />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.163.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.163.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+
+<body>
+  <!-- Global background -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Eclipse Studio Home">
+      <span class="logoWrap" aria-hidden="true">
+        <img src="logo.png" alt="" class="logoImg" />
+      </span>
+      <div class="brandText">
+        <strong data-i18n="brand.name">Eclipse Studio</strong>
+        <span data-i18n="brand.tagline">Freelance Creative Agency</span>
+      </div>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#footer" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <!-- Language toggle (EN / FR) -->
+    <div class="langWrap" role="group" aria-label="Language switch">
+      <button class="langToggle glass" type="button" id="langToggle" aria-label="Switch language">
+        <span class="langOpt" data-lang="en" aria-hidden="true">EN</span>
+        <span class="langOpt" data-lang="fr" aria-hidden="true">FR</span>
+        <span class="langKnob" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <button class="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Mobile nav -->
+  <div class="mobileNav" id="mobileNav" aria-hidden="true">
+    <div class="mobileNavInner glass">
+      <div class="mobileNavTop">
+        <span class="pill" data-i18n="mobileNav.title">Navigation</span>
+        <button class="iconBtn" id="closeNav" type="button" aria-label="Close menu">✕</button>
+      </div>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#tools" data-i18n="nav.tools">Tools</a>
+      <a href="#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#footer" data-i18n="nav.contact">Contact</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <main id="home" class="heroWrap">
+    <canvas id="stars" class="starsHero" aria-hidden="true"></canvas>
+
+    <section class="hero page">
+      <div class="copy reveal">
+        <div class="chip" data-i18n="hero.chip">
+          <span class="spark" aria-hidden="true"></span>
+          Premium creative studio — Quietly powerful
+        </div>
+
+        <h1 data-i18n="hero.title">Eclipse Studio</h1>
+
+        <p class="subtitle" data-i18n="hero.subtitle">
+          We craft <b>websites</b>, <b>Flutter apps</b>, <b>video edits</b>, <b>brand visuals</b>, and <b>3D</b> —
+          focused, restrained, and built to last.
+        </p>
+
+        <div class="meta" data-i18n="hero.meta">Web • Flutter • Design • Video • 3D</div>
+
+        <div class="actions">
+          <a class="cta" href="#portfolio" data-i18n="hero.viewWork">
+            <span class="icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M7 17L17 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M9 7h8v8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            View Work
+          </a>
+
+          <a class="link" href="#footer" data-i18n="hero.contact">Contact</a>
+        </div>
+
+        <div class="trust">
+          <div class="trustItem glass">
+            <span class="k" data-i18n="trust.response.k">Response</span>
+            <span class="v" data-i18n="trust.response.v">Clear, Direct, Reliable</span>
+          </div>
+          <div class="trustItem glass">
+            <span class="k" data-i18n="trust.style.k">Style</span>
+            <span class="v" data-i18n="trust.style.v">Minimal, intentional, premium</span>
+          </div>
+          <div class="trustItem glass">
+            <span class="k" data-i18n="trust.delivery.k">Delivery</span>
+            <span class="v" data-i18n="trust.delivery.v">Finished, Refined, Ready</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right visual sculpture -->
+      <section class="visual reveal" id="visual" aria-label="Cosmic portal sculpture">
+        <div class="blackholeWrap" id="blackholeWrap" aria-hidden="true"></div>
+
+        <div class="cards" aria-hidden="true">
+          <div class="card c1">
+            <p class="k" data-i18n="heroCard.web.k"><span class="pip"></span>Web Design</p>
+            <p class="v" data-i18n="heroCard.web.v">Glass UI, sharp hierarchy, memorable layouts.</p>
+          </div>
+          <div class="card c2">
+            <p class="k" data-i18n="heroCard.flutter.k"><span class="pip"></span>Flutter</p>
+            <p class="v" data-i18n="heroCard.flutter.v">Clean flows, responsive screens, smooth motion.</p>
+          </div>
+          <div class="card c3">
+            <p class="k" data-i18n="heroCard.visual.k"><span class="pip"></span>Visual Craft</p>
+            <p class="v" data-i18n="heroCard.visual.v">Branding, edits, 3D — made to feel premium.</p>
+          </div>
+        </div>
+
+        <div class="whisper" aria-hidden="true">
+          <span class="line"></span>
+          <span data-i18n="hero.whisper">Space bends.</span>
+        </div>
+      </section>
+    </section>
+
+    <div class="nebulaBand" aria-hidden="true"></div>
+  </main>
+
+  <!-- ABOUT -->
+  <section id="about" class="section sectionAlt">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 data-i18n="about.title">Small studio, Big finish</h2>
+        <p class="lead" data-i18n="about.lead">
+          Eclipse Studio is a freelance agency focused on clean aesthetics, storytelling, and high-end polish.
+          We build websites that feel considered, apps that move smoothly, and visuals people remember without trying.
+        </p>
+      </div>
+
+      <div class="aboutGrid">
+        <div class="glass pad reveal">
+          <h3 data-i18n="about.believe.title">What we believe</h3>
+          <p data-i18n="about.believe.body">
+            Great design is quiet confidence — clear structure, strong contrast, and details you only notice when they’re gone.
+          </p>
+          <div class="miniPills">
+            <span class="pill" data-i18n="about.believe.p1">Clarity</span>
+            <span class="pill" data-i18n="about.believe.p2">Presence</span>
+            <span class="pill" data-i18n="about.believe.p3">Impact</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <h3 data-i18n="about.get.title">What you get</h3>
+          <ul class="list">
+            <li data-i18n="about.get.l1">Modern layout & personalized UI</li>
+            <li data-i18n="about.get.l2">Responsive design (mobile → desktop)</li>
+            <li data-i18n="about.get.l3">Assets optimized & clean structure</li>
+            <li data-i18n="about.get.l4">Micro-interactions that feel alive</li>
+          </ul>
+        </div>
+
+        <div class="glass pad reveal">
+          <h3 data-i18n="about.best.title">Best for</h3>
+          <ul class="list">
+            <li data-i18n="about.best.l1">Landing pages that convert</li>
+            <li data-i18n="about.best.l2">Personal brands & portfolios</li>
+            <li data-i18n="about.best.l3">Business websites & product pages</li>
+            <li data-i18n="about.best.l4">UI kits & app design systems</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services" class="section">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <p class="eyebrow" data-i18n="services.eyebrow">Services</p>
+        <h2 data-i18n="services.title">One studio, Multiple disciplines</h2>
+        <p class="lead" data-i18n="services.lead">Pick what you need — or combine them for a cohesive launch.</p>
+      </div>
+
+      <div class="serviceGrid">
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">✦</div>
+          <h3 data-i18n="svc.web.title">Websites</h3>
+          <p data-i18n="svc.web.body">Landing pages, portfolios, and business sites — structured for clarity, designed to feel premium.</p>
+          <div class="tags">
+            <span data-i18n="svc.web.t1">UI/UX</span><span data-i18n="svc.web.t2">Web Design</span><span data-i18n="svc.web.t3">Front-end</span>
+          </div>
+        </article>
+
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">⌁</div>
+          <h3 data-i18n="svc.flutter.title">Flutter Apps</h3>
+          <p data-i18n="svc.flutter.body">Mobile apps with smooth flow, modern screens, and layouts ready for production.</p>
+          <div class="tags">
+            <span data-i18n="svc.flutter.t1">Flutter</span><span data-i18n="svc.flutter.t2">Mobile UI</span><span data-i18n="svc.flutter.t3">Flow</span>
+          </div>
+        </article>
+
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">⟡</div>
+          <h3 data-i18n="svc.video.title">Video Montage</h3>
+          <p data-i18n="svc.video.body">Short-form edits with rhythm, clean subtitles, and pacing that keeps attention.</p>
+          <div class="tags">
+            <span data-i18n="svc.video.t1">Reels</span><span data-i18n="svc.video.t2">Short-form</span><span data-i18n="svc.video.t3">Subtitles</span>
+          </div>
+        </article>
+
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">◈</div>
+          <h3 data-i18n="svc.graphic.title">Graphic Design</h3>
+          <p data-i18n="svc.graphic.body">Branding packs, social visuals, identity systems that look consistent everywhere.</p>
+          <div class="tags">
+            <span data-i18n="svc.graphic.t1">Branding</span><span data-i18n="svc.graphic.t2">Posters</span><span data-i18n="svc.graphic.t3">Social</span>
+          </div>
+        </article>
+
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">⬡</div>
+          <h3 data-i18n="svc.model3d.title">3D Models</h3>
+          <p data-i18n="svc.model3d.body">Product renders, scene models, and stylized assets for modern visuals.</p>
+          <div class="tags">
+            <span data-i18n="svc.model3d.t1">3D</span><span data-i18n="svc.model3d.t2">Render</span><span data-i18n="svc.model3d.t3">Assets</span>
+          </div>
+        </article>
+
+        <article class="glass serviceCard reveal">
+          <div class="svcIcon" aria-hidden="true">➹</div>
+          <h3 data-i18n="svc.launch.title">Full Launch Kit</h3>
+          <p data-i18n="svc.launch.body">Website, brand, visuals, and motion — one direction, one clear identity.</p>
+          <div class="tags">
+            <span data-i18n="svc.launch.t1">System</span><span data-i18n="svc.launch.t2">Consistency</span><span data-i18n="svc.launch.t3">Impact</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section id="tools" class="section sectionAlt">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <p class="eyebrow" data-i18n="tools.eyebrow">Tools & Technologies</p>
+        <h2 data-i18n="tools.title">Clean stack, Fast delivery</h2>
+        <p class="lead" data-i18n="tools.lead">We choose tools that keep things consistent, scalable, and easy to maintain.</p>
+      </div>
+
+      <div class="toolsGrid">
+        <div class="glass pad reveal">
+          <h3 data-i18n="tools.web.title">Web</h3>
+          <div class="pillRow">
+            <span class="pill" data-i18n="tools.web.p1">HTML</span><span class="pill" data-i18n="tools.web.p2">CSS</span><span class="pill" data-i18n="tools.web.p3">JavaScript</span>
+            <span class="pill" data-i18n="tools.web.p4">Responsive</span><span class="pill" data-i18n="tools.web.p5">Animations</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <h3 data-i18n="tools.apps.title">Apps</h3>
+          <div class="pillRow">
+            <span class="pill" data-i18n="tools.apps.p1">Flutter</span><span class="pill" data-i18n="tools.apps.p2">Dart</span><span class="pill" data-i18n="tools.apps.p3">UI Systems</span>
+            <span class="pill" data-i18n="tools.apps.p4">State Patterns</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <h3 data-i18n="tools.design.title">Design</h3>
+          <div class="pillRow">
+            <span class="pill" data-i18n="tools.design.p1">Figma</span><span class="pill" data-i18n="tools.design.p2">Design Tokens</span><span class="pill" data-i18n="tools.design.p3">Brand Systems</span>
+            <span class="pill" data-i18n="tools.design.p4">Prototyping</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <h3 data-i18n="tools.video3d.title">Video / 3D</h3>
+          <div class="pillRow">
+            <span class="pill" data-i18n="tools.video3d.p1">After Effects</span><span class="pill" data-i18n="tools.video3d.p2">Premiere</span>
+            <span class="pill" data-i18n="tools.video3d.p3">Blender</span><span class="pill" data-i18n="tools.video3d.p4">Rendering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <p class="eyebrow" data-i18n="portfolio.eyebrow">Portfolio</p>
+        <h2 data-i18n="portfolio.title">Selected web design projects</h2>
+        <p class="lead" data-i18n="portfolio.lead">Curated web design concepts — built to feel real, clear, and intentional.</p>
+      </div>
+
+      <div class="filters reveal" role="tablist" aria-label="Portfolio filters">
+        <button class="filter isActive" data-filter="all" role="tab" aria-selected="true" data-i18n="filters.all">All</button>
+        <button class="filter" data-filter="landing" role="tab" aria-selected="false" data-i18n="filters.landing">Landing</button>
+        <button class="filter" data-filter="portfolio" role="tab" aria-selected="false" data-i18n="filters.portfolio">Portfolio</button>
+        <button class="filter" data-filter="ecom" role="tab" aria-selected="false" data-i18n="filters.ecom">E-commerce</button>
+        <button class="filter" data-filter="saas" role="tab" aria-selected="false" data-i18n="filters.saas">SaaS</button>
+      </div>
+
+      <div class="portfolioGrid">
+        <!-- 1 -->
+        <article class="project glass reveal" data-cat="landing">
+          <div class="projectMedia">
+            <img class="projectImg" alt="Restaurant landing page mockup"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='760'%3E%3Cdefs%3E%3CradialGradient id='g1' cx='28%25' cy='26%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23d7b6ff' stop-opacity='.28'/%3E%3Cstop offset='55%25' stop-color='%237a48ff' stop-opacity='.10'/%3E%3Cstop offset='100%25' stop-color='%23070512' stop-opacity='1'/%3E%3C/radialGradient%3E%3ClinearGradient id='g2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ffffff' stop-opacity='.08'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1200' height='760' fill='url(%23g1)'/%3E%3Crect x='90' y='84' width='1020' height='592' rx='28' fill='url(%23g2)' stroke='%23ffffff' stroke-opacity='.14'/%3E%3Crect x='140' y='140' width='420' height='18' rx='9' fill='%23ffffff' opacity='.20'/%3E%3Crect x='140' y='186' width='560' height='52' rx='16' fill='%23ffffff' opacity='.12'/%3E%3Crect x='140' y='260' width='460' height='16' rx='8' fill='%23ffffff' opacity='.12'/%3E%3Crect x='140' y='288' width='380' height='16' rx='8' fill='%23ffffff' opacity='.10'/%3E%3Crect x='140' y='348' width='190' height='44' rx='22' fill='%23d7b6ff' opacity='.20'/%3E%3Crect x='740' y='160' width='310' height='340' rx='26' fill='%23ffffff' opacity='.06' stroke='%23d7b6ff' stroke-opacity='.18'/%3E%3Ccircle cx='900' cy='330' r='92' fill='%23d7b6ff' opacity='.16'/%3E%3Ccircle cx='900' cy='330' r='50' fill='%23000000' opacity='.25'/%3E%3C/svg%3E" />
+            <div class="projectOverlay">
+              <a class="caseBtn" href="#" aria-label="View case study: Restaurant landing" data-i18n="projects.btn">View Case Study</a>
+            </div>
+          </div>
+
+          <div class="projectBody">
+            <div class="projectTop">
+              <h3 data-i18n="p1.title">Restaurant Landing</h3>
+              <span class="badge" data-i18n="p1.badge">Web</span>
+            </div>
+            <p class="muted" data-i18n="p1.desc">Premium menu spotlight & reservations push. Designed for clarity and trust.</p>
+            <div class="tagRow">
+              <span data-i18n="p1.tag1">Landing Page</span><span data-i18n="p1.tag2">UI/UX</span><span data-i18n="p1.tag3">Conversion</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="project glass reveal" data-cat="portfolio">
+          <div class="projectMedia">
+            <img class="projectImg" alt="Personal brand portfolio mockup"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='760'%3E%3Cdefs%3E%3CradialGradient id='a' cx='70%25' cy='30%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23b982ff' stop-opacity='.24'/%3E%3Cstop offset='60%25' stop-color='%235c34e6' stop-opacity='.10'/%3E%3Cstop offset='100%25' stop-color='%23070512' stop-opacity='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='760' fill='url(%23a)'/%3E%3Crect x='110' y='84' width='980' height='592' rx='28' fill='%23ffffff' opacity='.06' stroke='%23ffffff' stroke-opacity='.14'/%3E%3Crect x='160' y='150' width='520' height='60' rx='18' fill='%23ffffff' opacity='.10'/%3E%3Crect x='160' y='236' width='420' height='16' rx='8' fill='%23ffffff' opacity='.12'/%3E%3Crect x='160' y='262' width='380' height='16' rx='8' fill='%23ffffff' opacity='.10'/%3E%3Crect x='160' y='314' width='220' height='44' rx='22' fill='%23b982ff' opacity='.18'/%3E%3Crect x='760' y='150' width='280' height='420' rx='26' fill='%23ffffff' opacity='.05' stroke='%23b982ff' stroke-opacity='.18'/%3E%3Ccircle cx='900' cy='320' r='88' fill='%23b982ff' opacity='.12'/%3E%3Ccircle cx='900' cy='320' r='46' fill='%23000000' opacity='.22'/%3E%3C/svg%3E" />
+            <div class="projectOverlay">
+              <a class="caseBtn" href="#" aria-label="View case study: Personal brand portfolio" data-i18n="projects.btn">View Case Study</a>
+            </div>
+          </div>
+
+          <div class="projectBody">
+            <div class="projectTop">
+              <h3 data-i18n="p2.title">Personal Brand Portfolio</h3>
+              <span class="badge" data-i18n="p2.badge">Web + Identity</span>
+            </div>
+            <p class="muted" data-i18n="p2.desc">A memorable site built around personality, story, and hireable presence.</p>
+            <div class="tagRow">
+              <span data-i18n="p2.tag1">Portfolio</span><span data-i18n="p2.tag2">Branding</span><span data-i18n="p2.tag3">Story</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="project glass reveal" data-cat="saas">
+          <div class="projectMedia">
+            <img class="projectImg" alt="SaaS dashboard website mockup"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='760'%3E%3Cdefs%3E%3CradialGradient id='s' cx='42%25' cy='32%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23e2beff' stop-opacity='.22'/%3E%3Cstop offset='58%25' stop-color='%237a46eb' stop-opacity='.10'/%3E%3Cstop offset='100%25' stop-color='%23070512' stop-opacity='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='760' fill='url(%23s)'/%3E%3Crect x='96' y='92' width='1008' height='576' rx='28' fill='%23ffffff' opacity='.06' stroke='%23ffffff' stroke-opacity='.14'/%3E%3Crect x='144' y='148' width='420' height='18' rx='9' fill='%23ffffff' opacity='.18'/%3E%3Crect x='144' y='190' width='620' height='44' rx='16' fill='%23ffffff' opacity='.10'/%3E%3Crect x='144' y='264' width='360' height='260' rx='22' fill='%23ffffff' opacity='.05' stroke='%23e2beff' stroke-opacity='.18'/%3E%3Crect x='528' y='264' width='520' height='120' rx='22' fill='%23ffffff' opacity='.05' stroke='%23e2beff' stroke-opacity='.14'/%3E%3Crect x='528' y='404' width='520' height='120' rx='22' fill='%23ffffff' opacity='.05' stroke='%23b982ff' stroke-opacity='.14'/%3E%3Cpath d='M560 464 C640 420, 720 520, 820 450 S 1020 520, 1060 440' fill='none' stroke='%23e2beff' stroke-opacity='.34' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E" />
+            <div class="projectOverlay">
+              <a class="caseBtn" href="#" aria-label="View case study: NeonOps SaaS" data-i18n="projects.btn">View Case Study</a>
+            </div>
+          </div>
+
+          <div class="projectBody">
+            <div class="projectTop">
+              <h3 data-i18n="p3.title">NeonOps SaaS Website</h3>
+              <span class="badge" data-i18n="p3.badge">Web App</span>
+            </div>
+            <p class="muted" data-i18n="p3.desc">Crisp sections, product clarity, and a dashboard-style visual language.</p>
+            <div class="tagRow">
+              <span data-i18n="p3.tag1">SaaS</span><span data-i18n="p3.tag2">UI System</span><span data-i18n="p3.tag3">Trust</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="project glass reveal" data-cat="ecom">
+          <div class="projectMedia">
+            <img class="projectImg" alt="E-commerce product website mockup"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='760'%3E%3Cdefs%3E%3CradialGradient id='e' cx='68%25' cy='38%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23e2beff' stop-opacity='.20'/%3E%3Cstop offset='55%25' stop-color='%23b982ff' stop-opacity='.10'/%3E%3Cstop offset='100%25' stop-color='%23070512' stop-opacity='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='760' fill='url(%23e)'/%3E%3Crect x='100' y='90' width='1000' height='580' rx='28' fill='%23ffffff' opacity='.06' stroke='%23ffffff' stroke-opacity='.14'/%3E%3Crect x='150' y='150' width='420' height='48' rx='16' fill='%23ffffff' opacity='.10'/%3E%3Crect x='150' y='224' width='320' height='16' rx='8' fill='%23ffffff' opacity='.12'/%3E%3Crect x='150' y='250' width='280' height='16' rx='8' fill='%23ffffff' opacity='.10'/%3E%3Crect x='150' y='300' width='220' height='44' rx='22' fill='%23e2beff' opacity='.16'/%3E%3Crect x='690' y='154' width='360' height='440' rx='26' fill='%23ffffff' opacity='.05' stroke='%23e2beff' stroke-opacity='.16'/%3E%3Ccircle cx='870' cy='360' r='118' fill='%23e2beff' opacity='.10'/%3E%3Ccircle cx='870' cy='360' r='68' fill='%23000000' opacity='.18'/%3E%3C/svg%3E" />
+            <div class="projectOverlay">
+              <a class="caseBtn" href="#" aria-label="View case study: LuxCart e-commerce" data-i18n="projects.btn">View Case Study</a>
+            </div>
+          </div>
+
+          <div class="projectBody">
+            <div class="projectTop">
+              <h3 data-i18n="p4.title">LuxCart E-commerce</h3>
+              <span class="badge" data-i18n="p4.badge">Shop</span>
+            </div>
+            <p class="muted" data-i18n="p4.desc">Product focus, fast scanning, and a checkout flow designed to reduce friction.</p>
+            <div class="tagRow">
+              <span data-i18n="p4.tag1">E-commerce</span><span data-i18n="p4.tag2">Conversion</span><span data-i18n="p4.tag3">Product UI</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="project glass reveal" data-cat="landing">
+          <div class="projectMedia">
+            <img class="projectImg" alt="Event landing page mockup"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='760'%3E%3Cdefs%3E%3CradialGradient id='p' cx='34%25' cy='26%25' r='90%25'%3E%3Cstop offset='0%25' stop-color='%23b982ff' stop-opacity='.22'/%3E%3Cstop offset='60%25' stop-color='%237a46eb' stop-opacity='.10'/%3E%3Cstop offset='100%25' stop-color='%23070512' stop-opacity='1'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='760' fill='url(%23p)'/%3E%3Crect x='90' y='90' width='1020' height='580' rx='28' fill='%23ffffff' opacity='.06' stroke='%23ffffff' stroke-opacity='.14'/%3E%3Crect x='140' y='150' width='600' height='56' rx='16' fill='%23ffffff' opacity='.10'/%3E%3Crect x='140' y='228' width='420' height='16' rx='8' fill='%23ffffff' opacity='.12'/%3E%3Crect x='140' y='254' width='380' height='16' rx='8' fill='%23ffffff' opacity='.10'/%3E%3Crect x='140' y='312' width='240' height='44' rx='22' fill='%23b982ff' opacity='.16'/%3E%3Crect x='140' y='392' width='920' height='210' rx='24' fill='%23ffffff' opacity='.05' stroke='%23b982ff' stroke-opacity='.14'/%3E%3Crect x='180' y='428' width='220' height='140' rx='18' fill='%23ffffff' opacity='.05'/%3E%3Crect x='430' y='428' width='220' height='140' rx='18' fill='%23ffffff' opacity='.05'/%3E%3Crect x='680' y='428' width='220' height='140' rx='18' fill='%23ffffff' opacity='.05'/%3E%3Crect x='930' y='428' width='120' height='140' rx='18' fill='%23ffffff' opacity='.05'/%3E%3C/svg%3E" />
+            <div class="projectOverlay">
+              <a class="caseBtn" href="#" aria-label="View case study: Aurora event landing" data-i18n="projects.btn">View Case Study</a>
+            </div>
+          </div>
+
+          <div class="projectBody">
+            <div class="projectTop">
+              <h3 data-i18n="p5.title">Aurora Event Landing</h3>
+              <span class="badge" data-i18n="p5.badge">Web</span>
+            </div>
+            <p class="muted" data-i18n="p5.desc">A bold landing with clear sections, RSVP focus, and premium typography rhythm.</p>
+            <div class="tagRow">
+              <span data-i18n="p5.tag1">Landing Page</span><span data-i18n="p5.tag2">Layout</span><span data-i18n="p5.tag3">Story</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="section sectionAlt">
+    <div class="container">
+      <div class="sectionHead reveal">
+        <p class="eyebrow" data-i18n="process.eyebrow">Process</p>
+        <h2 data-i18n="process.title">Simple steps, Clean results</h2>
+        <p class="lead" data-i18n="process.lead">No chaos. Just clarity — from first message to final delivery.</p>
+      </div>
+
+      <div class="processGrid">
+        <div class="glass pad reveal">
+          <div class="stepTop">
+            <span class="stepNum">01</span>
+            <h3 data-i18n="process.s1.title">Direction</h3>
+          </div>
+          <p data-i18n="process.s1.body">We align on goals, references, and the desired tone: premium, minimal, cosmic.</p>
+          <div class="miniPills">
+            <span class="pill" data-i18n="process.s1.p1">Brief</span><span class="pill" data-i18n="process.s1.p2">Mood</span><span class="pill" data-i18n="process.s1.p3">Scope</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <div class="stepTop">
+            <span class="stepNum">02</span>
+            <h3 data-i18n="process.s2.title">Design</h3>
+          </div>
+          <p data-i18n="process.s2.body">Layout, typography, spacing, and components — crafted for clarity and rhythm.</p>
+          <div class="miniPills">
+            <span class="pill" data-i18n="process.s2.p1">UI Kit</span><span class="pill" data-i18n="process.s2.p2">Hierarchy</span><span class="pill" data-i18n="process.s2.p3">Polish</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <div class="stepTop">
+            <span class="stepNum">03</span>
+            <h3 data-i18n="process.s3.title">Build</h3>
+          </div>
+          <p data-i18n="process.s3.body">Responsive implementation with smooth interactions and performance-friendly effects.</p>
+          <div class="miniPills">
+            <span class="pill" data-i18n="process.s3.p1">Responsive</span><span class="pill" data-i18n="process.s3.p2">Motion</span><span class="pill" data-i18n="process.s3.p3">Clean Code</span>
+          </div>
+        </div>
+
+        <div class="glass pad reveal">
+          <div class="stepTop">
+            <span class="stepNum">04</span>
+            <h3 data-i18n="process.s4.title">Deliver</h3>
+          </div>
+          <p data-i18n="process.s4.body">A meticulous final pass — every detail refined, every asset polished, ready for handoff.</p>
+          <div class="miniPills">
+            <span class="pill" data-i18n="process.s4.p1">QA</span><span class="pill" data-i18n="process.s4.p2">Consistency</span><span class="pill" data-i18n="process.s4.p3">Handoff</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="footer footerCta">
+    <div class="container">
+      <div class="footerCard glass reveal">
+        <div class="footerTop">
+          <h2 class="footerTitle" data-i18n="footer.title">Let’s build something you’ll be proud to put your name on.</h2>
+          <p class="footerSub" data-i18n="footer.sub">
+            If you have an idea (or even a rough draft), send it. We reply with a clear direction and what we’d do first.
+          </p>
+        </div>
+
+        <div class="footerGrid">
+          <div class="footerBlock">
+            <p class="footerLabel" data-i18n="footer.emailLabel">EMAIL</p>
+            <div class="footerField">
+              <a href="mailto:benabdallahfiras833@gmail.com">EclipseStudioOfficiel@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="footerBlock">
+            <p class="footerLabel" data-i18n="footer.phoneLabel">PHONE</p>
+            <div class="footerField">
+              <a href="tel:+21600000000">+216 98 137 090</a><br/>
+              <a href="tel:+21600000001">+216 92 486 800</a>
+            </div>
+          </div>
+
+          <div class="footerBlock">
+            <p class="footerLabel" data-i18n="footer.elsewhereLabel">ELSEWHERE</p>
+            <div class="footerPills">
+              <a class="pillLink" href="#" aria-label="Behance" data-i18n="footer.behance">Behance</a>
+              <a class="pillLink" href="#" aria-label="Facebook" data-i18n="footer.facebook">Facebook</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="footerBottomBar">
+          <div class="footerMini">
+            <img src="logo.png" alt="Eclipse Studio logo" class="footerLogo" />
+            <span class="footerMiniText" data-i18n="footer.mini">
+              Eclipse Studio — websites, Flutter apps, video edits, design & 3D.
+            </span>
+          </div>
+
+          <a class="footerBtn" href="#portfolio" data-i18n="footer.viewProjects">View projects</a>
+        </div>
+
+        <div class="footerLegal">
+          <span data-i18n="footer.rights">© <span id="year"></span> Eclipse Studio. All rights reserved.</span>
+          <span class="dotSep">•</span>
+          <span class="mutedSmall" data-i18n="footer.note">Built with restraint, precision, and a touch of the cosmic.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script type="module" src="blackhole.js"></script>
+</body>
+</html>
