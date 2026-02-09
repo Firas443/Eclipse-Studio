@@ -23,7 +23,7 @@ let STAR_COUNT = 120;
 function computeCounts(w, h) {
   const area = w * h;
   const isSmall = w < 900;
-  STAR_COUNT = isSmall ? 85 : 120;
+  STAR_COUNT = isSmall ? 60 : 100;
   if (area > 2200000) STAR_COUNT -= 20;
 }
 

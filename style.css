@@ -1479,3 +1479,327 @@ canvas#stars{
   .langToggle{ gap: 8px; padding: 6px 8px; }
   .langToggle[data-active="fr"] .langKnob{ transform: translateX(40px); }
 }
+
+/* =========================================================
+   MOBILE REMASTER PATCH (paste at END of CSS)
+   Goal: mobile feels composed, premium, readable, fast.
+   ========================================================= */
+
+:root{
+  --safeTop: env(safe-area-inset-top, 0px);
+  --safeBottom: env(safe-area-inset-bottom, 0px);
+  --mobilePad: 16px;
+}
+
+/* ---------- Global mobile typography + spacing ---------- */
+@media (max-width: 980px){
+  body{
+    overflow-x: hidden;
+  }
+
+  .container{
+    width: min(1160px, calc(100% - 28px));
+  }
+
+  .section{
+    padding: 72px 0;
+  }
+
+  .page{
+    padding: 18px clamp(14px, 4vw, 22px);
+  }
+
+  .lead{
+    max-width: 60ch;
+  }
+}
+
+/* ---------- Topbar: compact + aligned + safe-area ---------- */
+@media (max-width: 980px){
+  .topbar{
+    align-items: center;               /* FIX: was flex-start */
+    padding: calc(10px + var(--safeTop)) 14px 10px;
+    gap: 10px;
+  }
+
+  .brand{
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .logoWrap{
+    width: 36px;
+    height: 36px;
+  }
+
+  .brandText strong{
+    font-size: 13px;
+  }
+
+  .brandText span{
+    font-size: 11px;
+    opacity: .85;
+  }
+
+  /* On very small screens hide the tagline to avoid crowding */
+  @media (max-width: 420px){
+    .brandText span{ display:none; }
+  }
+
+  .langWrap{
+    margin-left: 0;
+  }
+
+  .langToggle{
+    transform: scale(.96);
+    transform-origin: right center;
+  }
+
+  .menuBtn{
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+  }
+}
+
+/* ---------- HERO: rebuild layout for mobile (copy first, visual second) ---------- */
+@media (max-width: 980px){
+  .heroWrap{
+    overflow: hidden;
+  }
+
+  .hero{
+    min-height: auto;                   /* avoid weird 100vh stacking */
+    display: flex;                      /* switch from grid to flex */
+    flex-direction: column;
+    gap: 18px;
+    padding-bottom: 32px;
+    position: relative;
+  }
+
+  .copy{
+    padding-top: 14px;                  /* was 6vh -> causes weird overlap */
+    max-width: 100%;
+  }
+
+  .chip{
+    font-size: 11px;
+    padding: 9px 12px;
+    opacity: .95;
+  }
+
+  h1{
+    margin: 14px 0 10px;
+    font-size: clamp(36px, 10vw, 54px); /* controlled */
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+  }
+
+  .subtitle{
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 14px;
+    max-width: 62ch;
+  }
+
+  .meta{
+    font-size: 12px;
+    opacity: .9;
+  }
+
+  /* CTA row becomes stack */
+  .actions{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .cta{
+    justify-content: center;
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .link{
+    text-align: center;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+    backdrop-filter: none;
+  }
+
+  /* Trust becomes a clean horizontal “snap” row */
+  .trust{
+    margin-top: 16px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .trustItem{
+    scroll-snap-align: start;
+    min-width: 220px;
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+
+  /* Visual becomes a “hero feature block” (no overlap chaos) */
+  .visual{
+    order: 2;
+    width: 100%;
+    min-width: 0;                       /* FIX: was min-width:420px */
+    height: 42vh;
+    max-height: 460px;
+    border-radius: 26px;
+    overflow: hidden;
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Hide floating text cards on mobile (they clutter) */
+  .cards{ display:none !important; }
+
+  /* Subtle frame so it feels intentional */
+  .visual::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius: inherit;
+    pointer-events:none;
+    background:
+      radial-gradient(900px 420px at 30% 10%, rgba(226,190,255,.16), transparent 60%),
+      radial-gradient(900px 420px at 80% 60%, rgba(185,130,255,.10), transparent 60%),
+      linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.28));
+    opacity: 1;
+    z-index: 0;
+  }
+
+  /* Make “Space bends.” readable */
+  .whisper{
+    left: 14px;
+    bottom: 12px;
+    font-size: 12px;
+    color: rgba(248,247,255,.55);
+    z-index: 3;
+  }
+
+  /* Keep your 3D/canvas but ensure it stays centered + clipped */
+  .blackholeWrap{
+    inset: 0;                           /* FIX: was -100% (too chaotic on mobile) */
+    border-radius: inherit;
+    -webkit-mask-image: none;
+    mask-image: none;
+    opacity: .98;
+    z-index: 1;
+  }
+
+  .blackholeWrap canvas{
+    position:absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%,-50%) scale(1.08);
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  /* If performance drops, uncomment this to disable 3D on mobile */
+  /*
+  .blackholeWrap{ display:none !important; }
+  */
+}
+
+/* ---------- Portfolio filters: make them scroll horizontally (premium) ---------- */
+@media (max-width: 980px){
+  .filters{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 6px 2px 10px;
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .filter{
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+}
+
+/* ---------- Cards + grids: better mobile rhythm ---------- */
+@media (max-width: 980px){
+  .serviceGrid,
+  .toolsGrid,
+  .portfolioGrid,
+  .processGrid{
+    gap: 14px;
+  }
+
+  .project{
+    border-radius: 22px;
+  }
+
+  .projectMedia{
+    height: 200px;                      /* more balanced on mobile */
+  }
+
+  .projectBody{
+    padding: 14px 14px 16px;
+  }
+
+  .project h3{
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .badge{
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ---------- Footer: stronger mobile CTA feel ---------- */
+@media (max-width: 980px){
+  .footerCta{ padding: 60px 0 78px; }
+
+  .footerCard{
+    padding: 18px;
+    border-radius: 24px;
+  }
+
+  .footerTitle{
+    font-size: clamp(24px, 7vw, 34px);
+    line-height: 1.08;
+  }
+
+  .footerField{
+    font-size: 16px;
+  }
+
+  .footerBottomBar{
+    gap: 10px;
+  }
+}
+
+/* ---------- Reduce “blur heavy” effects only on mobile but keep premium ---------- */
+@media (max-width: 980px){
+  .vignette{
+    background: radial-gradient(70% 90% at 50% 35%, transparent 0%, rgba(0,0,0,.20) 60%, rgba(0,0,0,.72) 100%);
+  }
+
+  /* Keep glass look without expensive blur (you already started this; refine it) */
+  .glass{
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    box-shadow: 0 18px 60px rgba(0,0,0,.42);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}

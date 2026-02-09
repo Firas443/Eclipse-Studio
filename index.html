@@ -555,7 +555,12 @@
     </div>
   </footer>
 
-  <script src="script.js"></script>
-  <script type="module" src="blackhole.js"></script>
+  <script src="script.js" defer></script>
+<script type="module">
+  window.addEventListener("load", () => {
+    requestIdleCallback(() => import("./blackhole.js"), { timeout: 1200 });
+  });
+</script>
+
 </body>
 </html>
