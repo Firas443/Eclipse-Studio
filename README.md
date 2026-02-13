@@ -1,6 +1,6 @@
 # Eclipse Studio Website
 
-**Premium creative studio — Quietly powerful**  
+**Premium freelance agency**  
 Eclipse Studio crafts websites, Flutter apps, video edits, brand visuals, and 3D — focused, restrained, and built to last.
 
 ---
