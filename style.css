@@ -1803,3 +1803,43 @@ canvas#stars{
     -webkit-backdrop-filter: none !important;
   }
 }
+
+.project{ position: relative; }
+
+/* clickable layer */
+.projectStretchLink{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+/* content above clickable layer */
+.projectMedia,
+.projectBody{
+  position: relative;
+  z-index: 2;
+}
+
+/* ensure the button is above EVERYTHING and clickable */
+.projectOverlay{
+  position: absolute; /* your design probably already does this */
+  z-index: 3;
+}
+
+.caseBtn{
+  position: relative;
+  z-index: 4;
+}
+
+/* optional: makes the card feel clickable */
+.project{ cursor: pointer; }
+
+/* helps PNG cover nicely (if not already in your CSS) */
+.projectImg{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
